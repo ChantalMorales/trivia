@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "babel": "^6.23.0",
+    "firebase": "7.6.1",
+    "live-server": "^1.2.1"
+  }
+}
