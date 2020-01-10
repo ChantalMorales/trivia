@@ -17,7 +17,15 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /(\.js|.jsx)$/,exclude: /node_modules/,loader: 'babel'}
+            { test: /(\.js|.jsx)$/,exclude: /node_modules/,loader: 'babel'},
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+        
+            }
         ]
-    }
+    }, 
 }

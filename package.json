@@ -2,12 +2,18 @@
   "name": "react-firebase-quiz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "dependencies": {
     "babel-preset-latest": "^6.16.0",
+    "css-loader": "0.28.4",
     "firebase": "^3.9.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-css-modules": "^4.7.11",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.3.0",
+    "react-with-firebase-auth": "1.2.0",
+    "style-loader": "0.18.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
