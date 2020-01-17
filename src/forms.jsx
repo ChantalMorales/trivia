@@ -12,7 +12,7 @@ class App extends React.Component {
           alertData: {}
         };
       }
-    
+
       showAlert(type, message) {
         this.setState({
           alert: true,
@@ -22,11 +22,11 @@ class App extends React.Component {
           this.setState({ alert: false });
         }, 4000)
       }
-    
+
       resetForm() {
         this.refs.quizForm.reset();
       }
-    
+
       componentWillMount() {
         let formRef = firebaseConf.database().ref('form').orderByKey().limitToLast(6);
         formRef.on('child_added', snapshot => {
@@ -35,10 +35,10 @@ class App extends React.Component {
           this.setState({ form: [data].concat(this.state.form) });
         })
       }
-    
+
       sendMessage(e) {
         e.preventDefault();
-        
+
         const params = {
           enunciado: this.inputEnunciado.value,
           opcion1: this.inputOp1.value,
@@ -46,7 +46,7 @@ class App extends React.Component {
           opcion3: this.inputOp3.value,
           opcion4: this.inputOp4.value,
           respuesta: this.inputRes.value
-          
+
         };
 
 
@@ -84,9 +84,9 @@ class App extends React.Component {
       // }
 
 
-      deleteMessage(d){
-        d.preventDefault();
-        firebaseConf.database().ref()
+      deleteMessage(key){
+        // d.preventDefault();
+        firebaseConf.database().ref(`form/${key}`)
         .remove()
         .then(() => {
           this.showAlert('Exitoso', 'Las preguntas fueron borradas!');
@@ -94,8 +94,8 @@ class App extends React.Component {
 
       }
 
-       
-      
+
+
 
 
     render() {
@@ -134,12 +134,12 @@ class App extends React.Component {
                       <div className='form-group'>
                         <label htmlFor='respuesta'>Respuesta: </label>
                         <input type='text' className='form-control' id='respuesta' placeholder='Respuesta' ref={respuesta => this.inputRes = respuesta} />
-                      </div>                      
+                      </div>
                       <button type='submit' className='btn btn-primary'>Guardar...</button>
-                      
-                     
 
-                      
+
+
+
 
                     </form>
                   </div>
@@ -158,6 +158,7 @@ class App extends React.Component {
                         <h4 className='card-title'>{form.opcion3}</h4>
                         <h4 className='card-title'>{form.opcion4}</h4>
                         <h4 className='card-title'>{form.respuesta}</h4>
+                        <button onClick={()=>this.deleteMessage(form.key)}>Eliminar</button>
 
                       </div>
                     </div>
@@ -166,9 +167,9 @@ class App extends React.Component {
             </div>
             </div>
 
-            
+
           );
-    }        
+    }
 }
 
 
